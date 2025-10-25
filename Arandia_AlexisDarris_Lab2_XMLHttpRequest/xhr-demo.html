@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XMLHttpRequest Lab</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-4px);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1976d2;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
+
+    #output {
+      margin-top: 25px;
+      text-align: left;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      transition: all 0.3s ease;
+    }
+
+    #output strong {
+      color: #0d47a1;
+    }
+
+    #output span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Exploring XMLHttpRequest</h2>
+    <button id="loadData">Load Post Data</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById("loadData").addEventListener("click", function() {
+      const xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          const output = document.getElementById("output");
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            output.innerHTML = `
+              <strong>Post Title:</strong> ${data.title}<br><br>
+              <strong>Content:</strong> ${data.body}
+            `;
+          } else {
+            output.innerHTML = `<span style="color:red;">Error: ${xhr.status} - ${xhr.statusText}</span>`;
+          }
+        }
+      };
+
+      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+      xhr.send();
+    });
+  </script>
+</body>
+</html>
