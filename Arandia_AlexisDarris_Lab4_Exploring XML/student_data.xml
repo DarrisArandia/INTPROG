@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <id>001</id>
+    <name>Kent Ashley Suarez</name>
+    <course>BSIT</course>
+    <year>3</year>
+  </student>
+  <student>
+    <id>002</id>
+    <name>Alexis Darris Arandia</name>
+    <course>BSIT</course>
+    <year>3</year>
+  </student>
+  <student>
+    <id>003</id>
+    <name>Carmichael Polancos</name>
+    <course>BSIT</course>
+    <year>3</year>
+  </student>
+</students>
